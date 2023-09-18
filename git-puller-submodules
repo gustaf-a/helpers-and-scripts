@@ -1,0 +1,66 @@
+# ASCII Art
+function DisplayBanner {
+    Clear-Host
+    Write-Host @"
+   ___         _         __ _       ___ _ _     ___      _ _         
+  / __|_  _ __| |_ __ _ / _( )___  / __(_) |_  | _ \_  _| | |___ _ _ 
+ | (_ | || (_-<  _/ _` |  _|/(_-< | (_ | |  _| |  _/ || | | / -_) '_|
+  \___|\_,_/__/\__\__,_|_|   /__/  \___|_|\__| |_|  \_,_|_|_\___|_|  
+                                                                     
+
+Gustaf's Recursive Git Puller for quick repo updates
+"@
+    Write-Host "===============================" -ForegroundColor Cyan
+}
+
+# Function to recursively pull from git repos
+function RecursiveGitPull {
+    param ([string]$path)
+
+    # Separator
+    Write-Host "-----------------------------------" -ForegroundColor Green
+
+    # Display the current path being processed
+    Write-Host "Processing folder: $path" -ForegroundColor Yellow
+
+    # Check if the path contains a .git folder
+    if (Test-Path -Path (Join-Path $path ".git")) {
+        # Change to the directory
+        Set-Location -Path $path
+
+        # Inform user that a git pull is being executed for the current repo
+        Write-Host "Found .git in $path. Pulling updates..." -ForegroundColor Magenta
+        $result = git pull --recurse-submodules
+
+        # Conditional formatting based on the result of git pull
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Pull successful!" -ForegroundColor Green
+        } else {
+            Write-Host "Pull failed!" -ForegroundColor Red
+            Write-Host $result
+        }
+
+        # Return to avoid searching deeper in a git repo
+        return
+    }
+    else {
+        # If not a git repo, look for subfolders and recursively call the function
+        $subfolders = Get-ChildItem -Path $path -Directory
+        foreach ($subfolder in $subfolders) {
+            RecursiveGitPull -path $subfolder.FullName
+        }
+    }
+}
+
+# Start by displaying the banner
+DisplayBanner
+
+# Start the recursive git pull from the script's current location
+RecursiveGitPull -path $PSScriptRoot
+
+# Sign off message with separator
+Write-Host "-----------------------------------" -ForegroundColor Green
+Write-Host "Script execution complete." -ForegroundColor Cyan
+
+# Keep window from closing
+Read-Host -Prompt "Press Enter to exit"
