@@ -16,6 +16,6 @@ Execute the script. This will start the recursive git pull process beginning fro
 2. Create a new shortcut.
 
 3. Set the shortcut target as:
-C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "<PathToScriptFile>"
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "[PathToScriptFile]"
 
 4. Double-click the shortcut to run your script.
