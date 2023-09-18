@@ -1,4 +1,7 @@
-# ASCII Art
+param (
+    [string]$sourceDirectory
+)
+
 function DisplayBanner {
     Clear-Host
     Write-Host @"
@@ -13,26 +16,21 @@ Gustaf's Recursive Git Puller for quick repo updates
     Write-Host "===============================" -ForegroundColor Cyan
 }
 
-# Function to recursively pull from git repos
 function RecursiveGitPull {
     param ([string]$path)
 
-    # Separator
     Write-Host "-----------------------------------" -ForegroundColor Green
 
-    # Display the current path being processed
     Write-Host "Processing folder: $path" -ForegroundColor Yellow
 
-    # Check if the path contains a .git folder
+    # Check if folder is a git repo
     if (Test-Path -Path (Join-Path $path ".git")) {
-        # Change to the directory
         Set-Location -Path $path
 
-        # Inform user that a git pull is being executed for the current repo
         Write-Host "Found .git in $path. Pulling updates..." -ForegroundColor Magenta
+
         $result = git pull --recurse-submodules
 
-        # Conditional formatting based on the result of git pull
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Pull successful!" -ForegroundColor Green
         } else {
@@ -40,7 +38,6 @@ function RecursiveGitPull {
             Write-Host $result
         }
 
-        # Return to avoid searching deeper in a git repo
         return
     }
     else {
@@ -52,11 +49,14 @@ function RecursiveGitPull {
     }
 }
 
-# Start by displaying the banner
+#Start
 DisplayBanner
 
-# Start the recursive git pull from the script's current location
-RecursiveGitPull -path $PSScriptRoot
+if ([string]::IsNullOrEmpty($sourceDirectory)) {
+    $sourceDirectory = $PSScriptRoot
+}
+
+RecursiveGitPull -path $sourceDirectory
 
 # Sign off message with separator
 Write-Host "-----------------------------------" -ForegroundColor Green
