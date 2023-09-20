@@ -16,6 +16,19 @@ Gustaf's Recursive Git Puller for quick repo updates
     Write-Host "===============================" -ForegroundColor Cyan
 }
 
+function PullGitUpdates {
+    Write-Host "Pulling updates..." -ForegroundColor Magenta
+
+    $result = git pull --recurse-submodules
+
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "Pull successful!" -ForegroundColor Green
+    } else {
+        Write-Host "Pull failed!" -ForegroundColor Red
+        Write-Host $result
+    }
+}
+
 function RecursiveGitPull {
     param ([string]$path)
 
@@ -27,16 +40,25 @@ function RecursiveGitPull {
     if (Test-Path -Path (Join-Path $path ".git")) {
         Set-Location -Path $path
 
-        Write-Host "Found .git in $path. Pulling updates..." -ForegroundColor Magenta
+        # Check the current git branch
+        $currentBranch = git rev-parse --abbrev-ref HEAD
 
-        $result = git pull --recurse-submodules
+        # If it's not 'develop', switch to 'develop'
+        if ($currentBranch -ne "develop") {
+            # Notify the user about the current branch
+            Write-Host "Current branch: $currentBranch" -ForegroundColor Magenta
 
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "Pull successful!" -ForegroundColor Green
-        } else {
-            Write-Host "Pull failed!" -ForegroundColor Red
-            Write-Host $result
+            Write-Host "Switching to 'develop' branch to pull updates..." -ForegroundColor Magenta
+            git checkout develop
+
+            PullGitUpdates
+
+            Write-Host "Switching back to $currentBranch branch..." -ForegroundColor Magenta
+            git checkout $currentBranch
         }
+                
+        #Pull for the current branch
+        PullGitUpdates
 
         return
     }
