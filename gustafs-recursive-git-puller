@@ -49,6 +49,18 @@ function RecursiveGitPull {
     }
 }
 
+function AllowUserToCancel {
+    param (
+        [string]$promptMessage = "Press Enter to run the script or Ctrl+C to exit."
+        )
+
+    Write-Host $promptMessage -ForegroundColor Yellow
+
+    $input = Read-Host
+
+    return $input
+}
+
 #Start
 DisplayBanner
 
@@ -59,6 +71,12 @@ if ([string]::IsNullOrEmpty($sourceDirectory)) {
     #Assign default value here
     #$sourceDirectory = "path\to\repos\parent\folder"
 }
+
+Write-Host "Starting folder: $sourceDirectory" -ForegroundColor Yellow
+
+AllowUserToCancel
+
+Write-Host "===============================" -ForegroundColor Cyan
 
 RecursiveGitPull -path $sourceDirectory
 
