@@ -53,7 +53,11 @@ function RecursiveGitPull {
 DisplayBanner
 
 if ([string]::IsNullOrEmpty($sourceDirectory)) {
+    #Assign file location as starting point
     $sourceDirectory = $PSScriptRoot
+
+    #Assign default value here
+    #$sourceDirectory = "path\to\repos\parent\folder"
 }
 
 RecursiveGitPull -path $sourceDirectory
