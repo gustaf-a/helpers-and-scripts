@@ -42,8 +42,39 @@ function RecursiveGitPull {
 
         # Check the current git branch
         $currentBranch = git rev-parse --abbrev-ref HEAD
+        
+        # Checks if the output of git status --porcelain is an empty string
+        $hasUncommittedChanges = -not [string]::IsNullOrWhiteSpace((git status --porcelain))
+        if ($hasUncommittedChanges){
+            
+            # Ask user what to do
+            Write-Host "You have uncommitted changes" -ForegroundColor Yellow
+            $userChoice = Read-Host " Input 1 to stage, stash and then update. Input 2 to skip this repo"
+            if ($userChoice -eq "2") {
+                return
+            }
 
-        # If it's not 'develop', switch to 'develop'
+            # Stage all
+            git add .
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "Staging failed: Skipping this repo" -ForegroundColor Red
+                return
+            }
+
+            # Stash any uncommitted changes
+            $stashResult = git stash
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "Stash failed: Skipping this repo" -ForegroundColor Red
+                Write-Host $stashResult
+                return
+            }
+
+            Write-Host "Stash successful" -ForegroundColor Green
+        }
+
+        PullGitUpdates
+
+        # If it's not 'develop' switch to 'develop'
         if ($currentBranch -ne "develop") {
             # Notify the user about the current branch
             Write-Host "Current branch: $currentBranch" -ForegroundColor Magenta
@@ -56,9 +87,18 @@ function RecursiveGitPull {
             Write-Host "Switching back to $currentBranch branch..." -ForegroundColor Magenta
             git checkout $currentBranch
         }
-                
-        #Pull for the current branch
-        PullGitUpdates
+        
+        if ($hasUncommittedChanges){
+            # Pop the stashed changes
+            $popResult = git stash pop
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "Stash pop failed: Failed to restore uncommitted changes" -ForegroundColor Red
+                Write-Host $popResult
+            }
+            else {
+                Write-Host "Stash restored successful" -ForegroundColor Green
+            }
+        }
 
         return
     }
