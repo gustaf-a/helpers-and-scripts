@@ -49,8 +49,10 @@ function RecursiveGitPull {
             
             # Ask user what to do
             Write-Host "You have uncommitted changes" -ForegroundColor Yellow
-            $userChoice = Read-Host " Input 1 to stage, stash and then update. Input 2 or press enter to skip this repo"
-            if ($userChoice -ne "1") {
+            Write-Host "The program can try to stage all changes and update, but this may cause unexpected permission issues with the files later." -ForegroundColor Red
+
+            $userChoice = Read-Host " Input 9 to stage, stash and then update. Press enter to skip this repo (recommended)"
+            if ($userChoice -ne "9") {
                 return
             }
 
