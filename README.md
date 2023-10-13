@@ -2,12 +2,17 @@
 Small scripts, helpers and tools
 
 ## Gustaf's Recursive Git Puller
-Easily update all your git repositories, both develop and current branch, in your source folder and subfolders. The recursive git puller script is a PowerShell script that provides an automated way to run a git pull command on every git repository under a given directory. It visually indicates success or failure for each repository and ensures you're up-to-date with the latest changes in develop.
 
-- The user is provided colored visual feedback and can easily see if something goes wrong in any repository.
+This PowerShell script provides an automated way to run a git pull command on every git repository under a given directory. It visually indicates success or failure for each repository and ensures you're up-to-date with the latest changes in your current branch and the develop branch.
+
+Features:
+
+- The script provides colored visual feedback, making it easy to see if something goes wrong in any repository.
 - Before running, the script asks for permission from the user to proceed.
-- If user is not on develop, both the current branch and develop will be updated.
-- If uncommitted changes are found, the script will ask the user to skip the repo or stage and stash the changes before updating.
+- If the user is not on the develop branch, both the current branch and develop will be updated.
+- If uncommitted changes are found, the script will ask the user to either skip the repo or stage and stash the changes before updating.
+- The script can be run from any directory, and it will recursively search for git repositories in all subdirectories.
+- The script allows the user to cancel the operation before it starts.
 
 ### How to Use
 Clone this repo or download the script into the directory containing you repositories.
