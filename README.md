@@ -1,6 +1,27 @@
 # helpers-and-scripts
 Small scripts, helpers and tools
 
+## Bluetooth device connector
+
+This PowerShell script, `bluetooth-device-connector.ps1`, is a tool for automatically connecting to specified Bluetooth devices. It uses the BluetoothAPIs.dll to enable discovery and incoming connections, and then attempts to connect to the devices listed in the `$DeviceNames` array.
+
+To modify the script for other devices, simply change the device names in the `$DeviceNames` array to the names of your desired devices. For example:
+```powershell
+$DeviceNames = @("Device Name 1", "Device Name 2")
+```
+To set this script up as a Start Menu item to be accessed from the Windows Start Menu, follow these steps:
+1. Clone this or copy this PowerShell script as `bluetooth-device-connector.ps1`.
+2. Navigate to `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`.
+3. Right-click in the folder and select "New > Shortcut".
+4. Set the shortcut target as:
+```powershell
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "[PathToScriptFile]"
+```
+5. Click "Next", name your shortcut, and click "Finish".
+
+Now, the script will be accessible from the Windows Start Menu.
+
+
 ## Gustaf's Recursive Git Puller
 
 This PowerShell script provides an automated way to run a git pull command on every git repository under a given directory. It visually indicates success or failure for each repository and ensures you're up-to-date with the latest changes in your current branch and the develop branch.
