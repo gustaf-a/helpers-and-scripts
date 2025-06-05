@@ -1,0 +1,92 @@
+
+================================================================================
+MIGRATION VERIFICATION REPORT
+================================================================================
+Generated at: 2025-06-04 23:20:53
+
+SUMMARY:
+- Total tables verified: 9
+- Passed: 4
+- Failed: 5
+- Pending migration: 0
+- Total source rows: 462,790
+- Total target rows: 462,786
+
+DETAILED RESULTS:
+
+------------------------------------------------------------
+Table: documents [PASS]
+  Rows: 251,457 -> 251,457
+  Structure Match: True
+  Row Count Match: True
+  Data Match: True
+------------------------------------------------------------
+Table: searches [FAIL]
+  Rows: 81,338 -> 81,334
+  Structure Match: False
+  Row Count Match: False
+  Data Match: True
+  ERRORS:
+    • Extra columns in target: thread_id
+    • Row count mismatch: source=81338, target=81334
+  WARNINGS:
+    • Index difference: Extra indexes in target: idx_searches_thread_id
+------------------------------------------------------------
+Table: rattsdatabaser [FAIL]
+  Rows: 63,415 -> 63,415
+  Structure Match: False
+  Row Count Match: True
+  Data Match: True
+  ERRORS:
+    • Column 'embedding' differences: default: 'NULL::vector' vs 'None'
+  WARNINGS:
+    • Index difference: Missing indexes in target: rattsdatabaser_embedding_idx
+------------------------------------------------------------
+Table: course_analyses_chunks [PASS]
+  Rows: 4,174 -> 4,174
+  Structure Match: True
+  Row Count Match: True
+  Data Match: True
+------------------------------------------------------------
+Table: predefined_prompts [FAIL]
+  Rows: 3 -> 3
+  Structure Match: False
+  Row Count Match: True
+  Data Match: True
+  ERRORS:
+    • Extra columns in target: parent_name
+    • Column 'id' differences: sequence_default: 'nextval('predefined_prompts_id_seq'::regclass)' vs 'nextval('predefined_prompts_id_seq1'::regclass)'
+    • Column 'prompt' differences: nullable: NO vs YES; default: 'None' vs '''::text'
+  WARNINGS:
+    • Index difference: Missing indexes in target: predefined_prompts_pk
+    • Index difference: Extra indexes in target: predefined_prompts_pkey
+------------------------------------------------------------
+Table: search_feedback [FAIL]
+  Rows: 0 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  ERRORS:
+    • Table search_feedback not found in source database
+------------------------------------------------------------
+Table: threads [FAIL]
+  Rows: 0 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  ERRORS:
+    • Table threads not found in source database
+------------------------------------------------------------
+Table: transcripts [PASS]
+  Rows: 62,261 -> 62,261
+  Structure Match: True
+  Row Count Match: True
+  Data Match: True
+------------------------------------------------------------
+Table: course_analyses [PASS]
+  Rows: 142 -> 142
+  Structure Match: True
+  Row Count Match: True
+  Data Match: True
+
+================================================================================

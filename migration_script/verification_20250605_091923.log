@@ -1,0 +1,24 @@
+2025-06-05 09:19:23,635 - database_verifier - INFO - Starting migration verification
+2025-06-05 09:19:24,078 - database_verifier - INFO - Verifying 9 tables
+2025-06-05 09:19:24,078 - database_verifier - INFO - Verifying table: rattsdatabaser
+2025-06-05 09:19:24,341 - database_verifier - INFO - Index differences found in table 'rattsdatabaser' (not considered errors)
+2025-06-05 09:19:24,388 - database_verifier - ERROR - Table rattsdatabaser verification failed: ["Column 'embedding' differences: default: 'NULL::vector' vs 'None'"]
+2025-06-05 09:19:24,389 - database_verifier - INFO - Verifying table: predefined_prompts
+2025-06-05 09:19:24,634 - database_verifier - INFO - Index differences found in table 'predefined_prompts' (not considered errors)
+2025-06-05 09:19:24,667 - database_verifier - ERROR - Table predefined_prompts verification failed: ['Extra columns in target: parent_name', "Column 'id' differences: sequence_default: 'nextval('predefined_prompts_id_seq'::regclass)' vs 'nextval('predefined_prompts_id_seq1'::regclass)'", "Column 'prompt' differences: nullable: NO vs YES; default: 'None' vs '''::text'"]
+2025-06-05 09:19:24,667 - database_verifier - INFO - Verifying table: course_analyses
+2025-06-05 09:19:24,911 - database_verifier - INFO - Table course_analyses verification passed
+2025-06-05 09:19:24,911 - database_verifier - INFO - Verifying table: searches
+2025-06-05 09:19:25,138 - database_verifier - INFO - Index differences found in table 'searches' (not considered errors)
+2025-06-05 09:19:25,190 - database_verifier - ERROR - Table searches verification failed: ['Extra columns in target: thread_id', 'Row count mismatch: source=81392, target=81334']
+2025-06-05 09:19:25,190 - database_verifier - INFO - Verifying table: search_feedback
+2025-06-05 09:19:25,225 - database_verifier - ERROR - Table search_feedback verification failed: ['Table search_feedback not found in source database']
+2025-06-05 09:19:25,226 - database_verifier - INFO - Verifying table: documents
+2025-06-05 09:19:25,559 - database_verifier - INFO - Table documents verification passed
+2025-06-05 09:19:25,560 - database_verifier - INFO - Verifying table: course_analyses_chunks
+2025-06-05 09:19:25,812 - database_verifier - INFO - Table course_analyses_chunks verification passed
+2025-06-05 09:19:25,813 - database_verifier - INFO - Verifying table: threads
+2025-06-05 09:19:25,849 - database_verifier - ERROR - Table threads verification failed: ['Table threads not found in source database']
+2025-06-05 09:19:25,850 - database_verifier - INFO - Verifying table: transcripts
+2025-06-05 09:19:26,113 - database_verifier - INFO - Table transcripts verification passed
+2025-06-05 09:19:26,116 - database_verifier - INFO - Verification report saved to: verification_report_20250605_091926.txt

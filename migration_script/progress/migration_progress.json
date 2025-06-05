@@ -1,0 +1,51 @@
+{
+  "course_analyses": {
+    "table_name": "course_analyses",
+    "total_rows": 142,
+    "migrated_rows": 142,
+    "last_primary_key": "142",
+    "completed": true
+  },
+  "course_analyses_chunks": {
+    "table_name": "course_analyses_chunks",
+    "total_rows": 4174,
+    "migrated_rows": 4174,
+    "last_primary_key": "4174",
+    "completed": true
+  },
+  "documents": {
+    "table_name": "documents",
+    "total_rows": 251457,
+    "migrated_rows": 251457,
+    "last_primary_key": "265283",
+    "completed": true
+  },
+  "predefined_prompts": {
+    "table_name": "predefined_prompts",
+    "total_rows": 3,
+    "migrated_rows": 3,
+    "last_primary_key": "3",
+    "completed": true
+  },
+  "rattsdatabaser": {
+    "table_name": "rattsdatabaser",
+    "total_rows": 63415,
+    "migrated_rows": 63415,
+    "last_primary_key": "64979",
+    "completed": true
+  },
+  "searches": {
+    "table_name": "searches",
+    "total_rows": 81322,
+    "migrated_rows": 81334,
+    "last_primary_key": "86458",
+    "completed": true
+  },
+  "transcripts": {
+    "table_name": "transcripts",
+    "total_rows": 62261,
+    "migrated_rows": 62261,
+    "last_primary_key": "119345",
+    "completed": true
+  }
+}

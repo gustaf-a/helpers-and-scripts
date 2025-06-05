@@ -1,0 +1,74 @@
+
+================================================================================
+MIGRATION VERIFICATION REPORT
+================================================================================
+Generated at: 2025-06-04 18:15:28
+
+SUMMARY:
+- Total tables verified: 7
+- Passed: 0
+- Failed: 0
+- Pending migration: 7
+- Total source rows: 462,753
+- Total target rows: 0
+
+DETAILED RESULTS:
+
+------------------------------------------------------------
+Table: documents [PENDING]
+  Rows: 251,457 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table documents not found in target database - not migrated yet
+------------------------------------------------------------
+Table: searches [PENDING]
+  Rows: 81,301 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table searches not found in target database - not migrated yet
+------------------------------------------------------------
+Table: transcripts [PENDING]
+  Rows: 62,261 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table transcripts not found in target database - not migrated yet
+------------------------------------------------------------
+Table: course_analyses_chunks [PENDING]
+  Rows: 4,174 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table course_analyses_chunks not found in target database - not migrated yet
+------------------------------------------------------------
+Table: rattsdatabaser [PENDING]
+  Rows: 63,415 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table rattsdatabaser not found in target database - not migrated yet
+------------------------------------------------------------
+Table: course_analyses [PENDING]
+  Rows: 142 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table course_analyses not found in target database - not migrated yet
+------------------------------------------------------------
+Table: predefined_prompts [PENDING]
+  Rows: 3 -> 0
+  Structure Match: False
+  Row Count Match: False
+  Data Match: False
+  WARNINGS:
+    • Table predefined_prompts not found in target database - not migrated yet
+
+================================================================================

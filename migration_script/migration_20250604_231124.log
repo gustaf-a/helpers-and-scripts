@@ -1,0 +1,106 @@
+2025-06-04 23:11:24,617 - postgresql_migrator - INFO - Starting PostgreSQL migration
+2025-06-04 23:11:25,083 - postgresql_migrator - INFO - Checking and creating required extensions
+2025-06-04 23:11:25,132 - postgresql_migrator - INFO - Extension vector is available
+2025-06-04 23:11:25,182 - postgresql_migrator - INFO - Extension uuid-ossp is available
+2025-06-04 23:11:25,215 - postgresql_migrator - WARNING - Could not create extension pg_trgm: extension "pg_trgm" is not allow-listed for users in Azure Database for PostgreSQL
+HINT:  to learn how to allow an extension or see the list of allowed extensions, please refer to https://go.microsoft.com/fwlink/?linkid=2301063
+
+2025-06-04 23:11:25,240 - postgresql_migrator - INFO - Creating sequences in target database
+2025-06-04 23:11:25,433 - postgresql_migrator - INFO - Sequence course_analyses_chunks_id_seq already exists
+2025-06-04 23:11:25,450 - postgresql_migrator - INFO - Sequence course_analyses_id_seq already exists
+2025-06-04 23:11:25,467 - postgresql_migrator - INFO - Sequence documents_id_seq already exists
+2025-06-04 23:11:25,483 - postgresql_migrator - INFO - Sequence predefined_prompts_id_seq already exists
+2025-06-04 23:11:25,500 - postgresql_migrator - INFO - Sequence rattsdatabaser_id_seq already exists
+2025-06-04 23:11:25,516 - postgresql_migrator - INFO - Sequence searches_id_seq already exists
+2025-06-04 23:11:25,516 - postgresql_migrator - INFO - No new sequences were created
+2025-06-04 23:11:25,533 - postgresql_migrator - INFO - Found 7 tables to migrate
+2025-06-04 23:11:25,534 - postgresql_migrator - INFO - Starting migration for table: course_analyses
+2025-06-04 23:11:25,603 - postgresql_migrator - INFO - Starting table creation process for course_analyses
+2025-06-04 23:11:25,686 - postgresql_migrator - INFO - Successfully created table definition for course_analyses
+2025-06-04 23:11:25,687 - postgresql_migrator - INFO - Creating table course_analyses in target database
+2025-06-04 23:11:25,705 - postgresql_migrator - INFO - Table course_analyses already exists in target database
+2025-06-04 23:11:25,706 - postgresql_migrator - INFO - Table course_analyses already completed
+2025-06-04 23:11:25,707 - postgresql_migrator - INFO - Starting migration for table: course_analyses_chunks
+2025-06-04 23:11:25,783 - postgresql_migrator - INFO - Starting table creation process for course_analyses_chunks
+2025-06-04 23:11:25,853 - postgresql_migrator - INFO - Successfully created table definition for course_analyses_chunks
+2025-06-04 23:11:25,854 - postgresql_migrator - INFO - Creating table course_analyses_chunks in target database
+2025-06-04 23:11:25,871 - postgresql_migrator - INFO - Table course_analyses_chunks already exists in target database
+2025-06-04 23:11:25,872 - postgresql_migrator - INFO - Table course_analyses_chunks already completed
+2025-06-04 23:11:25,872 - postgresql_migrator - INFO - Starting migration for table: documents
+2025-06-04 23:11:25,957 - postgresql_migrator - INFO - Starting table creation process for documents
+2025-06-04 23:11:26,030 - postgresql_migrator - INFO - Successfully created table definition for documents
+2025-06-04 23:11:26,030 - postgresql_migrator - INFO - Creating table documents in target database
+2025-06-04 23:11:26,048 - postgresql_migrator - INFO - Table documents already exists in target database
+2025-06-04 23:11:26,049 - postgresql_migrator - INFO - Table documents already completed
+2025-06-04 23:11:26,050 - postgresql_migrator - INFO - Starting migration for table: predefined_prompts
+2025-06-04 23:11:26,117 - postgresql_migrator - INFO - Starting table creation process for predefined_prompts
+2025-06-04 23:11:26,186 - postgresql_migrator - INFO - Successfully created table definition for predefined_prompts
+2025-06-04 23:11:26,186 - postgresql_migrator - INFO - Creating table predefined_prompts in target database
+2025-06-04 23:11:26,207 - postgresql_migrator - INFO - Table predefined_prompts already exists in target database
+2025-06-04 23:11:26,208 - postgresql_migrator - INFO - Table predefined_prompts already completed
+2025-06-04 23:11:26,208 - postgresql_migrator - INFO - Starting migration for table: rattsdatabaser
+2025-06-04 23:11:26,278 - postgresql_migrator - INFO - Starting table creation process for rattsdatabaser
+2025-06-04 23:11:26,346 - postgresql_migrator - INFO - Successfully created table definition for rattsdatabaser
+2025-06-04 23:11:26,346 - postgresql_migrator - INFO - Creating table rattsdatabaser in target database
+2025-06-04 23:11:26,363 - postgresql_migrator - INFO - Table rattsdatabaser already exists in target database
+2025-06-04 23:11:26,364 - postgresql_migrator - INFO - Table rattsdatabaser already completed
+2025-06-04 23:11:26,364 - postgresql_migrator - INFO - Starting migration for table: searches
+2025-06-04 23:11:26,435 - postgresql_migrator - INFO - Starting table creation process for searches
+2025-06-04 23:11:26,503 - postgresql_migrator - INFO - Successfully created table definition for searches
+2025-06-04 23:11:26,504 - postgresql_migrator - INFO - Creating table searches in target database
+2025-06-04 23:11:26,521 - postgresql_migrator - INFO - Table searches already exists in target database
+2025-06-04 23:11:26,521 - postgresql_migrator - INFO - Table searches already completed
+2025-06-04 23:11:26,521 - postgresql_migrator - INFO - Starting migration for table: transcripts
+2025-06-04 23:11:26,594 - postgresql_migrator - INFO - Starting table creation process for transcripts
+2025-06-04 23:11:26,665 - postgresql_migrator - INFO - Successfully created table definition for transcripts
+2025-06-04 23:11:26,665 - postgresql_migrator - INFO - Creating table transcripts in target database
+2025-06-04 23:11:26,682 - postgresql_migrator - INFO - Table transcripts already exists in target database
+2025-06-04 23:11:42,292 - postgresql_migrator - INFO - Table transcripts: 2000/62261 rows migrated
+2025-06-04 23:11:58,230 - postgresql_migrator - INFO - Table transcripts: 4000/62261 rows migrated
+2025-06-04 23:12:14,278 - postgresql_migrator - INFO - Table transcripts: 6000/62261 rows migrated
+2025-06-04 23:12:29,839 - postgresql_migrator - INFO - Table transcripts: 8000/62261 rows migrated
+2025-06-04 23:12:46,152 - postgresql_migrator - INFO - Table transcripts: 10000/62261 rows migrated
+2025-06-04 23:13:02,971 - postgresql_migrator - INFO - Table transcripts: 12000/62261 rows migrated
+2025-06-04 23:13:18,871 - postgresql_migrator - INFO - Table transcripts: 14000/62261 rows migrated
+2025-06-04 23:13:34,724 - postgresql_migrator - INFO - Table transcripts: 16000/62261 rows migrated
+2025-06-04 23:13:50,411 - postgresql_migrator - INFO - Table transcripts: 18000/62261 rows migrated
+2025-06-04 23:14:06,222 - postgresql_migrator - INFO - Table transcripts: 20000/62261 rows migrated
+2025-06-04 23:14:22,307 - postgresql_migrator - INFO - Table transcripts: 22000/62261 rows migrated
+2025-06-04 23:14:37,915 - postgresql_migrator - INFO - Table transcripts: 24000/62261 rows migrated
+2025-06-04 23:14:53,814 - postgresql_migrator - INFO - Table transcripts: 26000/62261 rows migrated
+2025-06-04 23:15:09,298 - postgresql_migrator - INFO - Table transcripts: 28000/62261 rows migrated
+2025-06-04 23:15:25,187 - postgresql_migrator - INFO - Table transcripts: 30000/62261 rows migrated
+2025-06-04 23:15:40,537 - postgresql_migrator - INFO - Table transcripts: 32000/62261 rows migrated
+2025-06-04 23:15:56,223 - postgresql_migrator - INFO - Table transcripts: 34000/62261 rows migrated
+2025-06-04 23:16:11,620 - postgresql_migrator - INFO - Table transcripts: 36000/62261 rows migrated
+2025-06-04 23:16:26,992 - postgresql_migrator - INFO - Table transcripts: 38000/62261 rows migrated
+2025-06-04 23:16:42,857 - postgresql_migrator - INFO - Table transcripts: 40000/62261 rows migrated
+2025-06-04 23:16:58,351 - postgresql_migrator - INFO - Table transcripts: 42000/62261 rows migrated
+2025-06-04 23:17:14,866 - postgresql_migrator - INFO - Table transcripts: 44000/62261 rows migrated
+2025-06-04 23:17:32,966 - postgresql_migrator - INFO - Table transcripts: 46000/62261 rows migrated
+2025-06-04 23:17:48,601 - postgresql_migrator - INFO - Table transcripts: 48000/62261 rows migrated
+2025-06-04 23:18:04,083 - postgresql_migrator - INFO - Table transcripts: 50000/62261 rows migrated
+2025-06-04 23:18:19,810 - postgresql_migrator - INFO - Table transcripts: 52000/62261 rows migrated
+2025-06-04 23:18:35,140 - postgresql_migrator - INFO - Table transcripts: 54000/62261 rows migrated
+2025-06-04 23:18:49,483 - postgresql_migrator - INFO - Table transcripts: 56000/62261 rows migrated
+2025-06-04 23:19:04,937 - postgresql_migrator - INFO - Table transcripts: 58000/62261 rows migrated
+2025-06-04 23:19:19,579 - postgresql_migrator - INFO - Table transcripts: 60000/62261 rows migrated
+2025-06-04 23:19:31,899 - postgresql_migrator - INFO - Table transcripts: 62000/62261 rows migrated
+2025-06-04 23:19:33,989 - postgresql_migrator - INFO - Table transcripts: 62261/62261 rows migrated
+2025-06-04 23:19:34,090 - postgresql_migrator - INFO - Table transcripts: All 62261 rows processed
+2025-06-04 23:19:34,099 - postgresql_migrator - INFO - Table transcripts migration completed
+2025-06-04 23:19:34,104 - postgresql_migrator - INFO - Setting sequence ownership
+2025-06-04 23:19:34,311 - postgresql_migrator - INFO - Set sequence course_analyses_chunks_id_seq ownership to course_analyses_chunks.id
+2025-06-04 23:19:34,329 - postgresql_migrator - INFO - Set sequence course_analyses_id_seq ownership to course_analyses.id
+2025-06-04 23:19:34,350 - postgresql_migrator - INFO - Set sequence documents_id_seq ownership to documents.id
+2025-06-04 23:19:34,383 - postgresql_migrator - INFO - Set sequence predefined_prompts_id_seq ownership to predefined_prompts.id
+2025-06-04 23:19:34,418 - postgresql_migrator - INFO - Set sequence rattsdatabaser_id_seq ownership to rattsdatabaser.id
+2025-06-04 23:19:34,436 - postgresql_migrator - INFO - Set sequence searches_id_seq ownership to searches.id
+2025-06-04 23:19:34,455 - postgresql_migrator - INFO - Updating sequence current values
+2025-06-04 23:19:34,650 - postgresql_migrator - INFO - Updated sequence course_analyses_chunks_id_seq to value: 4174
+2025-06-04 23:19:34,682 - postgresql_migrator - INFO - Updated sequence course_analyses_id_seq to value: 142
+2025-06-04 23:19:34,718 - postgresql_migrator - INFO - Updated sequence documents_id_seq to value: 265283
+2025-06-04 23:19:34,750 - postgresql_migrator - INFO - Updated sequence predefined_prompts_id_seq to value: 3
+2025-06-04 23:19:34,782 - postgresql_migrator - INFO - Updated sequence rattsdatabaser_id_seq to value: 64979
+2025-06-04 23:19:34,814 - postgresql_migrator - INFO - Updated sequence searches_id_seq to value: 86462
+2025-06-04 23:19:34,833 - postgresql_migrator - INFO - Migration completed successfully

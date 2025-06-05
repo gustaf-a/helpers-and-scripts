@@ -1,0 +1,131 @@
+2025-06-05 09:16:17,804 - database_verifier - INFO - Starting migration verification
+2025-06-05 09:16:18,254 - database_verifier - INFO - Verifying 9 tables
+2025-06-05 09:16:18,255 - database_verifier - INFO - Verifying table: search_feedback
+2025-06-05 09:16:18,290 - database_verifier - ERROR - Table search_feedback verification failed: ['Table search_feedback not found in source database']
+2025-06-05 09:16:18,290 - database_verifier - INFO - Verifying table: searches
+2025-06-05 09:16:18,570 - database_verifier - INFO - Index differences found in table 'searches' (not considered errors)
+2025-06-05 09:16:18,642 - database_verifier - ERROR - Table searches verification failed: ['Extra columns in target: thread_id', 'Row count mismatch: source=81390, target=81334']
+2025-06-05 09:16:18,643 - database_verifier - INFO - Verifying table: course_analyses
+2025-06-05 09:16:18,949 - database_verifier - ERROR - Exception during verification of table 'course_analyses'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 442, in _verify_table
+    source_checksum = self._calculate_table_checksum(
+        source_conn, self.source_config.schema, table_name, columns, primary_key
+    )
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 153, in _calculate_table_checksum
+    cursor.execute(query)
+    ~~~~~~~~~~~~~~^^^^^^^
+psycopg2.errors.GroupingError: column "course_analyses.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 4:                 ORDER BY "id"
+                                 ^
+
+2025-06-05 09:16:18,954 - database_verifier - ERROR - Table course_analyses verification failed: ['Verification failed with error: column "course_analyses.id" must appear in the GROUP BY clause or be used in an aggregate function\nLINE 4:                 ORDER BY "id"\n                                 ^\n']
+2025-06-05 09:16:18,955 - database_verifier - INFO - Verifying table: threads
+2025-06-05 09:16:18,973 - database_verifier - ERROR - Exception during verification of table 'threads'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:18,975 - database_verifier - ERROR - Table threads verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:18,975 - database_verifier - INFO - Verifying table: transcripts
+2025-06-05 09:16:18,992 - database_verifier - ERROR - Exception during verification of table 'transcripts'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:18,994 - database_verifier - ERROR - Table transcripts verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:18,995 - database_verifier - INFO - Verifying table: documents
+2025-06-05 09:16:19,011 - database_verifier - ERROR - Exception during verification of table 'documents'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:19,012 - database_verifier - ERROR - Table documents verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:19,012 - database_verifier - INFO - Verifying table: course_analyses_chunks
+2025-06-05 09:16:19,029 - database_verifier - ERROR - Exception during verification of table 'course_analyses_chunks'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:19,030 - database_verifier - ERROR - Table course_analyses_chunks verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:19,030 - database_verifier - INFO - Verifying table: predefined_prompts
+2025-06-05 09:16:19,047 - database_verifier - ERROR - Exception during verification of table 'predefined_prompts'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:19,048 - database_verifier - ERROR - Table predefined_prompts verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:19,048 - database_verifier - INFO - Verifying table: rattsdatabaser
+2025-06-05 09:16:19,064 - database_verifier - ERROR - Exception during verification of table 'rattsdatabaser'
+Traceback (most recent call last):
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 361, in _verify_table
+    source_tables = self._get_table_list(source_conn, self.source_config.schema)
+  File "C:\Projects\Blendow\ai-assistant-azure\migration_script\migration_verification_script.py", line 69, in _get_table_list
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        SELECT table_name
+        ^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        ORDER BY table_name
+        ^^^^^^^^^^^^^^^^^^^
+    """, (schema,))
+    ^^^^^^^^^^^^^^^
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+2025-06-05 09:16:19,065 - database_verifier - ERROR - Table rattsdatabaser verification failed: ['Verification failed with error: current transaction is aborted, commands ignored until end of transaction block\n']
+2025-06-05 09:16:19,066 - database_verifier - INFO - Verification report saved to: verification_report_20250605_091619.txt
