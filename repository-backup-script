@@ -1,0 +1,158 @@
+import os
+import shutil
+import fnmatch
+import logging
+import datetime
+import sys
+import argparse
+from errno import EACCES, EPERM
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(f"backup_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+def should_exclude(path, exclude_patterns):
+    """Check if a path should be excluded based on patterns."""
+    for pattern in exclude_patterns:
+        if fnmatch.fnmatch(path, pattern):
+            return True
+    return False
+
+def copy_with_exclusions(source, destination, exclude_patterns, skipped_items=None):
+    """
+    Recursively copy files from source to destination,
+    excluding paths that match exclude_patterns.
+    """
+    if skipped_items is None:
+        skipped_items = []
+    
+    if not os.path.exists(destination):
+        try:
+            os.makedirs(destination)
+        except (PermissionError, OSError) as e:
+            logging.warning(f"Could not create destination directory {destination}: {str(e)}")
+            skipped_items.append((destination, str(e)))
+            return skipped_items
+    
+    # Get all items in the source directory
+    try:
+        items = os.listdir(source)
+    except (PermissionError, OSError) as e:
+        logging.warning(f"Cannot access directory {source}: {str(e)}")
+        skipped_items.append((source, str(e)))
+        return skipped_items
+    
+    # Process each item in the source directory
+    for item in items:
+        source_path = os.path.join(source, item)
+        dest_path = os.path.join(destination, item)
+        
+        # Check if the path should be excluded
+        if should_exclude(source_path, exclude_patterns):
+            logging.info(f"Skipping excluded path: {source_path}")
+            continue
+        
+        try:
+            # If it's a directory, recursively copy its contents
+            if os.path.isdir(source_path):
+                copy_with_exclusions(source_path, dest_path, exclude_patterns, skipped_items)
+            # If it's a file, copy it
+            else:
+                shutil.copy2(source_path, dest_path)
+                logging.info(f"Copied: {source_path} to {dest_path}")
+        except (PermissionError, OSError) as e:
+            # Handle permission errors and other OS errors
+            if e.errno in (EACCES, EPERM):
+                logging.warning(f"Permission denied: {source_path} - {str(e)}")
+            else:
+                logging.warning(f"Error copying {source_path}: {str(e)}")
+            skipped_items.append((source_path, str(e)))
+            continue
+    
+    return skipped_items
+
+def main():
+    # Setup command-line argument parsing
+    parser = argparse.ArgumentParser(description="Backup coding projects excluding dependencies and compiled files.")
+    parser.add_argument("-s", "--source", help="Source directory path")
+    parser.add_argument("-d", "--destination", help="Destination directory path")
+    args = parser.parse_args()
+    
+    # Define source and endpoint paths
+    source_path = args.source if args.source else input("Enter source path: ")
+    endpoint_path = args.destination if args.destination else input("Enter endpoint path: ")
+    
+    # Validate paths
+    if not os.path.exists(source_path):
+        logging.error(f"Source path does not exist: {source_path}")
+        return
+    
+    # Define patterns to exclude
+    exclude_patterns = [
+        # Python specific
+        "*/__pycache__/*",
+        "*.pyc",
+        "*.pyo",
+        "*/venv/*",
+        "*/.venv/*",
+        "*/env/*",
+        "*/dist/*",
+        "*/build/*",
+        "*/*.egg-info/*",
+        "*/.pytest_cache/*",  # Add pytest cache directories
+        
+        # C# specific
+        "*/bin/*",
+        "*/obj/*",
+        "*.dll",
+        "*.exe",
+        "*/packages/*",
+        
+        # Vue/JavaScript/TypeScript specific
+        "*/.nuxt/*",
+        "*/.output/*",
+        "*/.cache/*",
+        "*/coverage/*",
+        "*.map",
+        "*/temp/*",
+        "*/.temp/*",
+        
+        # Version control
+        "*/.git/*",
+        "*/.svn/*",
+        
+        # IDE and editor files
+        "*/.vs/*",
+        "*/.idea/*",
+        "*/.vscode/*",
+        
+        # Node.js
+        "*/node_modules/*",
+    ]
+    
+    # Important note: .env files are NOT excluded and will be backed up
+    
+    # Perform the backup
+    logging.info(f"Starting backup from {source_path} to {endpoint_path}")
+    try:
+        skipped_items = copy_with_exclusions(source_path, endpoint_path, exclude_patterns, [])
+        
+        # Log summary of skipped items
+        if skipped_items:
+            logging.warning(f"Backup completed with {len(skipped_items)} skipped items due to access errors.")
+            logging.warning("Items skipped:")
+            for item, reason in skipped_items:
+                logging.warning(f"  - {item}: {reason}")
+        else:
+            logging.info("Backup completed successfully with no skipped items.")
+    except Exception as e:
+        logging.error(f"Backup failed: {str(e)}")
+
+if __name__ == "__main__":
+    main()
